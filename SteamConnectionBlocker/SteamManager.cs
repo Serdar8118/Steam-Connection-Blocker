@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
@@ -372,6 +373,74 @@ namespace SteamConnectionBlocker
         public static bool IsSteamRunning()
         {
             return Process.GetProcessesByName("steam").Length > 0;
+        }
+
+        /// <summary>
+        /// Checks if any Steam games are currently running
+        /// </summary>
+        public static async Task<(bool hasGames, List<string> gameNames)> CheckRunningGames()
+        {
+            return await Task.Run(() =>
+            {
+                var gamesList = new List<string>();
+                
+                try
+                {
+                    // Get all running processes
+                    var allProcesses = Process.GetProcesses();
+                    
+                    // Steam games typically run as child processes of Steam or have Steam overlay
+                    // We'll check for processes with Steam-related parent or that are in Steam directory
+                    foreach (var process in allProcesses)
+                    {
+                        try
+                        {
+                            // Skip the Steam client itself
+                            if (process.ProcessName.Equals("steam", StringComparison.OrdinalIgnoreCase) ||
+                                process.ProcessName.Equals("steamwebhelper", StringComparison.OrdinalIgnoreCase) ||
+                                process.ProcessName.Equals("steamservice", StringComparison.OrdinalIgnoreCase))
+                            {
+                                continue;
+                            }
+
+                            // Check if process has a main window (games usually do)
+                            if (process.MainWindowHandle != IntPtr.Zero)
+                            {
+                                // Try to get the executable path
+                                string? exePath = null;
+                                try
+                                {
+                                    exePath = process.MainModule?.FileName;
+                                }
+                                catch { }
+
+                                // If the executable is in a Steam directory (common, steamapps, etc.)
+                                if (!string.IsNullOrEmpty(exePath) && 
+                                    (exePath.Contains("steamapps", StringComparison.OrdinalIgnoreCase) ||
+                                     exePath.Contains("common", StringComparison.OrdinalIgnoreCase)))
+                                {
+                                    gamesList.Add($"{process.ProcessName} ({process.MainWindowTitle})");
+                                }
+                            }
+                        }
+                        catch
+                        {
+                            // Skip processes we can't access
+                            continue;
+                        }
+                        finally
+                        {
+                            process.Dispose();
+                        }
+                    }
+                }
+                catch
+                {
+                    // If we can't check, assume no games for safety
+                }
+
+                return (gamesList.Count > 0, gamesList);
+            });
         }
     }
 }

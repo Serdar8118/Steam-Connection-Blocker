@@ -52,9 +52,9 @@ dotnet run --project SteamConnectionBlocker
 
 ### Steam Bağlantısını Engelleme
 
-1. **"Steam Bağlantısını Engelle"** butonuna tıklayın
-2. Onay penceresinde "Evet" seçin
-3. Steam otomatik olarak yeniden başlatılacak
+1. **Steam'de açık oyun varsa kapatın** - Uygulama kontrol edecek
+2. **"Steam Bağlantısını Engelle"** butonuna tıklayın
+3. Onay penceresinde "Evet" seçin
 4. Steam şimdi çevrimdışı modda çalışıyor - aile kütüphanesinden oyun oynayabilirsiniz!
 
 ### Bağlantıyı Tekrar Açma
@@ -103,13 +103,13 @@ Bu kural etkinleştirildiğinde:
 - Steam çevrimdışı modda çalışır
 - Aile kütüphanesi oyunları oynamanıza izin verir
 
-### Steam'i Neden Yeniden Başlatmalıyım?
+### Oyun Kontrolü
 
-Steam başlatıldığında sunuculara bağlanır ve kimlik doğrulaması yapar. Bağlantı kurulduktan sonra engelleme yeterli olmayabilir. Bu nedenle:
-1. Firewall kuralı etkinleştirilir
-2. Steam kapatılır (açık oyunlar varsa kapatılmalı)
-3. Steam yeniden başlatılır
-4. Steam çevrimdışı modda açılır
+Engelleme yapılmadan önce:
+1. Uygulama çalışan Steam oyunlarını kontrol eder
+2. Açık oyun varsa, kullanıcıya hangi oyunların açık olduğunu gösterir
+3. Kullanıcı oyunları kapatana kadar engelleme yapılmaz
+4. Bu, oyun ilerlemesinin kaybolmasını önler
 
 ## 🔐 Güvenlik
 

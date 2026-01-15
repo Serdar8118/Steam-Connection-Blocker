@@ -216,47 +216,47 @@ namespace SteamConnectionBlocker
             else
             {
                 // Block
-                var confirmResult = MessageBox.Show(
-                    "Steam bağlantısı engellenecek ve Steam yeniden başlatılacak.\n\nDevam etmek istiyor musunuz?",
-                    "Onay",
-                    MessageBoxButton.YesNo,
-                    MessageBoxImage.Question);
-
-                if (confirmResult != MessageBoxResult.Yes)
-                    return;
-
-                ShowLoading("Bağlantı engelleniyor ve Steam yeniden başlatılıyor...");
+                ShowLoading("Oyun kontrolü yapılıyor...");
 
                 try
                 {
-                    // First enable the block
+                    // First check if any games are running
+                    var (hasGames, gameNames) = await SteamManager.CheckRunningGames();
+                    
+                    if (hasGames)
+                    {
+                        HideLoading();
+                        
+                        string gameList = string.Join("\n• ", gameNames);
+                        MessageBox.Show(
+                            $"Steam üzerinde açık oyun(lar) tespit edildi!\n\nLütfen devam etmeden önce aşağıdaki oyunları kapatın:\n\n• {gameList}\n\nOyunlar kapatıldıktan sonra tekrar deneyin.",
+                            "Oyun Açık",
+                            MessageBoxButton.OK,
+                            MessageBoxImage.Warning);
+                        return;
+                    }
+
+                    HideLoading();
+
+                    var confirmResult = MessageBox.Show(
+                        "Steam bağlantısı engellenecek.\n\nDevam etmek istiyor musunuz?",
+                        "Onay",
+                        MessageBoxButton.YesNo,
+                        MessageBoxImage.Question);
+
+                    if (confirmResult != MessageBoxResult.Yes)
+                        return;
+
+                    ShowLoading("Bağlantı engelleniyor...");
+
+                    // Enable the block
                     var blockResult = await SteamManager.EnableBlock();
                     
                     if (blockResult.success)
                     {
                         _isBlocked = true;
-                        
-                        // Then restart Steam
-                        if (!string.IsNullOrEmpty(_steamPath))
-                        {
-                            var restartResult = await SteamManager.RestartSteam(_steamPath);
-                            
-                            if (restartResult.success)
-                            {
-                                UpdateUI();
-                                ShowNotification("Steam bağlantısı engellendi ve yeniden başlatıldı!", NotificationType.Success);
-                            }
-                            else
-                            {
-                                UpdateUI();
-                                ShowNotification($"Engelleme başarılı ama Steam yeniden başlatılamadı: {restartResult.message}", NotificationType.Warning);
-                            }
-                        }
-                        else
-                        {
-                            UpdateUI();
-                            ShowNotification("Engelleme başarılı!", NotificationType.Success);
-                        }
+                        UpdateUI();
+                        ShowNotification("Steam bağlantısı engellendi! Steam offline modda çalışıyor.", NotificationType.Success);
                     }
                     else
                     {

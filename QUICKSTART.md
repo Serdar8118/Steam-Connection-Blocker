@@ -47,14 +47,13 @@ Uygulama açıldığında:
 
 **Çözüm**:
 
-1. Steam Connection Blocker'ı açın
-2. **"Steam Bağlantısını Engelle"** butonuna tıklayın
-3. Çıkan onay penceresinde **"Evet"** deyin
-4. Bekleyin (5-10 saniye):
-   - Steam kapatılacak
-   - Firewall kuralı aktif olacak
-   - Steam tekrar açılacak (çevrimdışı modda)
-5. Durum "Steam bağlantısı ENGELLENDİ" olarak değişecek
+1. **Açık oyunları kapatın** - Steam'de oyun varsa önce kapatın
+2. Steam Connection Blocker'ı açın
+3. **"Steam Bağlantısını Engelle"** butonuna tıklayın
+4. Eğer hala açık oyun varsa, uygulama sizi uyaracak ve hangi oyunların açık olduğunu gösterecek
+5. Oyunları kapattıktan sonra tekrar deneyin
+6. Çıkan onay penceresinde **"Evet"** deyin
+7. Durum "Steam bağlantısı ENGELLENDİ" olarak değişecek
 
 🎮 Artık Steam'den istediğiniz tek oyunculu oyunu başlatabilirsiniz!
 

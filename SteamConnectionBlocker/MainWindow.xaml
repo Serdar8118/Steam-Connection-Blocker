@@ -170,8 +170,8 @@
                                   FontSize="11"
                                   LineHeight="16">
                             1. "Kurulum Yap" ile firewall kuralını oluşturun<LineBreak/>
-                            2. "Steam Bağlantısını Engelle" ile çevrimdışı moda geçin<LineBreak/>
-                            3. Steam yeniden başlatılacak ve bağlantı kesilecek<LineBreak/>
+                            2. Steam'de açık oyun varsa kapatın<LineBreak/>
+                            3. "Steam Bağlantısını Engelle" ile çevrimdışı moda geçin<LineBreak/>
                             4. Artık aile kütüphanesinden oyun oynayabilirsiniz<LineBreak/>
                             5. Bitirince "Bağlantıyı Aç" ile normale dönün
                         </TextBlock>
