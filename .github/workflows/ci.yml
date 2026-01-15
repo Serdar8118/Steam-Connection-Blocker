@@ -13,10 +13,10 @@ jobs:
     
     steps:
     - name: Checkout code
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
       
     - name: Setup .NET
-      uses: actions/setup-dotnet@v3
+      uses: actions/setup-dotnet@v4
       with:
         dotnet-version: '8.0.x'
         
@@ -30,9 +30,14 @@ jobs:
       run: dotnet build SteamConnectionBlocker.sln -c Release --no-restore
       
     - name: Test Publish
+      run: dotnet publish SteamConnectionBlocker/SteamConnectionBlocker.csproj -c Release -r win-x64 --self-contained true -p:PublishSingleFile=true -o ./test-publish
+      
+    - name: Verify Build Outputs
       run: |
-        dotnet publish SteamConnectionBlocker/SteamConnectionBlocker.csproj `
-          -c Release `
-          -r win-x64 `
-          --no-build `
-          -o ./test-publish
+        if (Test-Path "./test-publish/SteamConnectionBlocker.exe") {
+          Write-Host "✓ Build successful - EXE file created"
+          exit 0
+        } else {
+          Write-Host "✗ Build failed - EXE file not found"
+          exit 1
+        }
