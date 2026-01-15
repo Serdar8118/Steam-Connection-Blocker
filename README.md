@@ -6,7 +6,7 @@ Steam aile kütüphanesinde paylaşılan **hikaye modlu (story)** ve **tek oyunc
 
 ## 🎯 Amaç
 
-Bu uygulama, Steam'in aile kütüphanesi kısıtlamasını aşmak için tasarlanmıştır. Normalde bir hesap çevrimiçi oynarken, aile kütüphanesini paylaşan diğer hesaplar oyun oynayamaz. Bu uygulama ile:
+Bu uygulama, Steam'in aile kütüphanesi kısıtlamasını aşmak için tasarlanmıştır. Normalde bir hesap çevrimiçi oynarken, aile kütüphanesini paylaşan diğer hesaplar aynı oyun oynayamaz. Bu uygulama ile:
 
 - **Hikaye modlu oyunlar** (Story games)
 - **Tek oyunculu oyunlar** (Single-player games)
@@ -189,4 +189,4 @@ Bu uygulama, Steam'in aile kütüphanesi özelliğini kullanarak **tek oyunculu 
 
 ---
 
-**© 2024 Steam Connection Blocker** - Aile kütüphanesi için tasarlandı.
+**© 2026 Steam Connection Blocker** - Aile kütüphanesi için tasarlandı.
