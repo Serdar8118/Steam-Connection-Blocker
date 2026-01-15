@@ -6,7 +6,8 @@
         Width="500"
         ResizeMode="CanMinimize"
         WindowStartupLocation="CenterScreen"
-        Background="{StaticResource PrimaryColor}">
+        Background="{StaticResource PrimaryColor}"
+        Icon="Resources/logo.ico">
 
     <Window.Resources>
         <!-- Loading Animation -->
@@ -33,6 +34,14 @@
         <!-- Header -->
         <Border Grid.Row="0" Background="{StaticResource SecondaryColor}" Padding="20">
             <StackPanel>
+                <!-- Logo -->
+                <Image Source="Resources/logo.png" 
+                       Width="80" 
+                       Height="80" 
+                       Margin="0,0,0,15"
+                       HorizontalAlignment="Center"
+                       RenderOptions.BitmapScalingMode="HighQuality"/>
+                
                 <TextBlock Text="Steam Connection Blocker" 
                           FontSize="24" 
                           FontWeight="Bold" 

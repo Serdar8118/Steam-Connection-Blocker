@@ -4,6 +4,7 @@ Windows 10/11 için Steam bağlantısını engelleyerek aile kütüphanesindeki 
 
 ## 🎮 Özellikler
 
+- **Marka Logosu**: Özel logo ile profesyonel görünüm
 - **Otomatik Steam Algılama**: Steam'in kurulum konumunu otomatik olarak bulur
 - **Kolay Engelleme/Açma**: Tek tıkla Steam'in internet bağlantısını engelleyin veya açın
 - **Güvenli Firewall Yönetimi**: Windows Firewall kurallarını güvenli bir şekilde yönetir
@@ -33,6 +34,11 @@ Windows 10/11 için Steam bağlantısını engelleyerek aile kütüphanesindeki 
 # Repository'yi klonlayın
 git clone https://github.com/Serdar8118/Steam-Connection-Blocker.git
 cd Steam-Connection-Blocker
+
+# Logo dosyalarını ekleyin (gerekli)
+# SteamConnectionBlocker/Resources/ klasörüne:
+# - logo.png (800x800)
+# - logo.ico (multi-size icon)
 
 # Projeyi derleyin
 dotnet build
