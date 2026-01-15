@@ -1,9 +1,25 @@
 # Steam Connection Blocker
 
-Windows 10/11 için Steam bağlantısını engelleyerek aile kütüphanesindeki oyunları aynı anda oynamanızı sağlayan modern bir masaüstü uygulaması.
+**Aile Kütüphanesi için Özel Çözüm**
+
+Steam aile kütüphanesinde paylaşılan **hikaye modlu (story)** ve **tek oyunculu (single-player)** oyunları aynı anda oynamanızı sağlayan kullanışlı masaüstü uygulaması.
+
+## 🎯 Amaç
+
+Bu uygulama, Steam'in aile kütüphanesi kısıtlamasını aşmak için tasarlanmıştır. Normalde bir hesap çevrimiçi oynarken, aile kütüphanesini paylaşan diğer hesaplar oyun oynayamaz. Bu uygulama ile:
+
+- **Hikaye modlu oyunlar** (Story games)
+- **Tek oyunculu oyunlar** (Single-player games)
+- **Çevrimdışı oynanabilen oyunlar**
+
+...aynı anda oynanabilir hale gelir.
+
+> ⚠️ **Önemli**: Bu uygulama sadece çevrimdışı oynanabilen oyunlar içindir. Çevrimiçi çok oyunculu oyunlar çalışmayacaktır.
 
 ## 🎮 Özellikler
 
+- **Tek EXE Dosyası**: Kurulum gerektirmez, doğrudan çalıştırılabilir
+- **Taşınabilir**: USB bellek veya herhangi bir klasörden çalışır
 - **Marka Logosu**: Özel logo ile profesyonel görünüm
 - **Otomatik Steam Algılama**: Steam'in kurulum konumunu otomatik olarak bulur
 - **Kolay Engelleme/Açma**: Tek tıkla Steam'in internet bağlantısını engelleyin veya açın
@@ -15,37 +31,23 @@ Windows 10/11 için Steam bağlantısını engelleyerek aile kütüphanesindeki 
 ## 📋 Gereksinimler
 
 - Windows 10 veya Windows 11
-- .NET 8.0 Runtime (veya SDK geliştirme için)
+- .NET 8.0 Runtime (tek EXE sürümü için gerekli değil)
 - Yönetici (Administrator) izinleri
 - Steam yüklü olmalıdır
 
 ## 🚀 Kurulum
 
-### Kullanıcılar için
+### Tek EXE Sürümü (Önerilen)
 
-1. En son sürümü [Releases](../../releases) sayfasından indirin
-2. İndirilen dosyayı çalıştırın (Yönetici olarak çalıştırmanız gerekir)
-3. Windows SmartScreen uyarısı çıkarsa "Daha fazla bilgi" > "Yine de çalıştır" seçin
-4. Uygulama açıldığında "Kurulum Yap" butonuna tıklayın
+**Kurulum gerektirmez!**
 
-### Geliştiriciler için
+1. `SteamConnectionBlocker.exe` dosyasını indirin
+2. İstediğiniz bir klasöre kopyalayın (USB bellek, masaüstü, vb.)
+3. Dosyaya **sağ tıklayın** ve **"Yönetici olarak çalıştır"** seçin
+4. Windows SmartScreen uyarısı çıkarsa "Daha fazla bilgi" > "Yine de çalıştır" seçin
+5. Uygulama açıldığında "Kurulum Yap" butonuna tıklayın
 
-```bash
-# Repository'yi klonlayın
-git clone https://github.com/Serdar8118/Steam-Connection-Blocker.git
-cd Steam-Connection-Blocker
-
-# Logo dosyalarını ekleyin (gerekli)
-# SteamConnectionBlocker/Resources/ klasörüne:
-# - logo.png (800x800)
-# - logo.ico (multi-size icon)
-
-# Projeyi derleyin
-dotnet build
-
-# Uygulamayı çalıştırın (Yönetici olarak)
-dotnet run --project SteamConnectionBlocker
-```
+> 💡 **Not**: Uygulama taşınabilirdir (portable). Herhangi bir klasörden çalıştırılabilir, sistem dosyalarına hiçbir şey yüklemez.
 
 ## 📖 Kullanım
 
@@ -107,7 +109,7 @@ Bu kural etkinleştirildiğinde:
 - Steam'in tüm giden internet bağlantıları engellenir
 - Yerel ağ bağlantıları etkilenmez
 - Steam çevrimdışı modda çalışır
-- Aile kütüphanesi oyunları oynamanıza izin verir
+- Aile kütüphanesindeki hikaye/tek oyunculu oyunları oynamanıza izin verir
 
 ### Oyun Kontrolü
 
@@ -117,63 +119,74 @@ Engelleme yapılmadan önce:
 3. Kullanıcı oyunları kapatana kadar engelleme yapılmaz
 4. Bu, oyun ilerlemesinin kaybolmasını önler
 
-## 🔐 Güvenlik
+### Tek EXE Nasıl Oluşturuldu?
 
-- Uygulama Windows Firewall API'sini kullanır
-- Sadece Steam.exe için kural oluşturur
-- Sistem dosyalarına dokunmaz
-- Tüm işlemler geri alınabilir
-
-## ⚠️ Uyarılar
-
-- Bu uygulama sadece aile kütüphanesi paylaşımı için tasarlanmıştır
-- Çevrimiçi çok oyunculu oyunlar çalışmayacaktır
-- Steam Market, Workshop ve diğer çevrimiçi özellikler kullanılamaz
-- Her kullanımdan sonra bağlantıyı açmayı unutmayın
-
-## 🏗️ Geliştirme
-
-### Proje Yapısı
-
-```
-SteamConnectionBlocker/
-├── App.xaml              # Uygulama kaynakları ve stiller
-├── App.xaml.cs           # Uygulama başlangıç kodu
-├── MainWindow.xaml       # Ana pencere UI
-├── MainWindow.xaml.cs    # Ana pencere mantığı
-├── SteamManager.cs       # Steam ve Firewall yönetimi
-└── app.manifest          # Yönetici izinleri
-```
-
-### Build
+Uygulama .NET 8.0 ile geliştirilmiş ve self-contained single-file olarak publish edilmiştir:
 
 ```bash
-# Debug build
-dotnet build
-
-# Release build
-dotnet build -c Release
-
-# Publish (tek dosya)
-dotnet publish -c Release -r win-x64 --self-contained true -p:PublishSingleFile=true
+dotnet publish -c Release -r win-x64 --self-contained true -p:PublishSingleFile=true -p:IncludeNativeLibrariesForSelfExtract=true
 ```
 
-## 📝 Lisans
+Bu sayede:
+- .NET Runtime dahil edilmiştir
+- Tüm bağımlılıklar tek dosyada
+- Kurulum gerektirmez
+- Taşınabilir (portable)
 
-Bu proje MIT lisansı altında lisanslanmıştır.
+## 💡 Kullanım Senaryoları
 
-## 🤝 Katkıda Bulunma
+### Senaryo 1: Aile Üyeleri
+- Aileden biri Steam'de çevrimiçi oyun oynuyor
+- Siz aynı aile kütüphanesinden tek oyunculu bir oyun oynamak istiyorsunuz
+- Steam Connection Blocker ile bağlantınızı engelleyip oyununuzu oynayabilirsiniz
 
-1. Bu repository'yi fork edin
-2. Yeni bir branch oluşturun (`git checkout -b feature/amazing-feature`)
-3. Değişikliklerinizi commit edin (`git commit -m 'Add amazing feature'`)
-4. Branch'inizi push edin (`git push origin feature/amazing-feature`)
-5. Bir Pull Request açın
+### Senaryo 2: Hikaye Modlu Oyunlar
+- Arkadaşınız competitive oyun oynuyor
+- Siz paylaşılan kütüphaneden hikaye modlu bir oyun oynamak istiyorsunuz
+- Her ikiniz de aynı anda oynayabilirsiniz
 
-## 📧 İletişim
+### Senaryo 3: Ofline İçerik
+- Steam Workshop veya Market'e ihtiyaç duymayan oyunlar
+- Tamamen offline oynanabilen single-player oyunlar
+- Co-op local oyunlar
 
-Sorular veya öneriler için issue açabilirsiniz.
+## 🎮 Hangi Oyunlar Çalışır?
 
-## ⭐ Teşekkürler
+### ✅ Çalışan Oyun Türleri
 
-Bu projeyi beğendiyseniz yıldız vermeyi unutmayın!
+- **Hikaye Modlu (Story)**: The Witcher 3, Red Dead Redemption 2, God of War
+- **Tek Oyunculu RPG**: Skyrim, Fallout 4, Cyberpunk 2077
+- **Strateji**: Civilization, Total War (kampanya modu)
+- **Puzzle/Platform**: Portal, Hollow Knight, Celeste
+- **Sandbox (Offline)**: Minecraft (solo), Terraria (solo)
+- **Adventure**: Tomb Raider serisi, Uncharted benzeri oyunlar
+
+### ❌ Çalışmayan Oyun Türleri
+
+- **Online Multiplayer**: CS:GO, Dota 2, PUBG, Valorant
+- **Always-Online**: Destiny 2, The Division, Diablo IV
+- **MMO**: World of Warcraft, Final Fantasy XIV
+- **Live Service**: Apex Legends, Fortnite
+- **DRM Korumalı**: Her zaman internet isteyen oyunlar
+
+## 📞 Destek
+
+Uygulama hakkında sorularınız için:
+- Uygulama içindeki "Sorun Giderme" menüsünü kullanın
+- Yaygın sorunlar için bu README'yi kontrol edin
+
+## 📄 Yasal Bilgilendirme
+
+Bu uygulama, Steam'in aile kütüphanesi özelliğini kullanarak **tek oyunculu ve hikaye modlu oyunları** aynı anda oynamak için geliştirilmiştir. Uygulama:
+
+- Steam hesaplarına zarar vermez
+- Oyun dosyalarını değiştirmez
+- Sadece yerel Windows Firewall ayarlarını kullanır
+- Valve Anti-Cheat (VAC) sistemini tetiklemez (çevrimdışı oyunlar için)
+- Kişisel kullanım amacıyla tasarlanmıştır
+
+**Uyarı**: Çevrimiçi/multiplayer oyunlarda kullanmayın. Steam Kullanım Şartlarını ihlal edebilir.
+
+---
+
+**© 2024 Steam Connection Blocker** - Aile kütüphanesi için tasarlandı.
