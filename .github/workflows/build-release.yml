@@ -1,0 +1,95 @@
+name: Build and Release
+
+on:
+  push:
+    tags:
+      - 'v*'
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: windows-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+      
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v3
+      with:
+        dotnet-version: '8.0.x'
+        
+    - name: Restore dependencies
+      run: dotnet restore SteamConnectionBlocker.sln
+      
+    - name: Build
+      run: dotnet build SteamConnectionBlocker.sln -c Release --no-restore
+      
+    - name: Publish Windows x64
+      run: |
+        dotnet publish SteamConnectionBlocker/SteamConnectionBlocker.csproj `
+          -c Release `
+          -r win-x64 `
+          --self-contained true `
+          -p:PublishSingleFile=true `
+          -p:IncludeNativeLibrariesForSelfExtract=true `
+          -p:EnableCompressionInSingleFile=true `
+          -p:DebugType=None `
+          -p:DebugSymbols=false `
+          -o ./publish/win-x64
+          
+    - name: Publish Windows x86
+      run: |
+        dotnet publish SteamConnectionBlocker/SteamConnectionBlocker.csproj `
+          -c Release `
+          -r win-x86 `
+          --self-contained true `
+          -p:PublishSingleFile=true `
+          -p:IncludeNativeLibrariesForSelfExtract=true `
+          -p:EnableCompressionInSingleFile=true `
+          -p:DebugType=None `
+          -p:DebugSymbols=false `
+          -o ./publish/win-x86
+          
+    - name: Create Archives
+      run: |
+        Compress-Archive -Path ./publish/win-x64/* -DestinationPath ./SteamConnectionBlocker-win-x64.zip
+        Compress-Archive -Path ./publish/win-x86/* -DestinationPath ./SteamConnectionBlocker-win-x86.zip
+        
+    - name: Upload Artifacts
+      uses: actions/upload-artifact@v3
+      with:
+        name: steam-connection-blocker
+        path: |
+          ./SteamConnectionBlocker-win-x64.zip
+          ./SteamConnectionBlocker-win-x86.zip
+          
+    - name: Create Release
+      if: startsWith(github.ref, 'refs/tags/')
+      uses: softprops/action-gh-release@v1
+      with:
+        files: |
+          ./SteamConnectionBlocker-win-x64.zip
+          ./SteamConnectionBlocker-win-x86.zip
+        body: |
+          ## Steam Connection Blocker Release
+          
+          ### Kurulum
+          1. İşletim sisteminize uygun ZIP dosyasını indirin (x64 veya x86)
+          2. ZIP dosyasını açın
+          3. `SteamConnectionBlocker.exe` dosyasını çalıştırın (Yönetici olarak)
+          
+          ### Özellikler
+          - Steam bağlantısını engelleme/açma
+          - Otomatik Steam algılama
+          - Modern kullanıcı arayüzü
+          - Sorun giderme araçları
+          
+          ### Gereksinimler
+          - Windows 10/11
+          - .NET 8.0 Runtime (bu sürümde dahil)
+          - Yönetici hakları
+          
+          Daha fazla bilgi için [README](https://github.com/Serdar8118/Steam-Connection-Blocker/blob/main/README.md) dosyasını okuyun.
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
