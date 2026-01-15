@@ -177,28 +177,6 @@
                         </TextBlock>
                     </StackPanel>
                 </Border>
-
-                <!-- Loading Indicator -->
-                <Grid x:Name="LoadingPanel" Visibility="Collapsed" Margin="0,20,0,0">
-                    <StackPanel HorizontalAlignment="Center">
-                        <Ellipse x:Name="LoadingEllipse" 
-                                Width="40" 
-                                Height="40" 
-                                Stroke="{StaticResource AccentColor}" 
-                                StrokeThickness="4"
-                                StrokeDashArray="8,4"
-                                RenderTransformOrigin="0.5,0.5">
-                            <Ellipse.RenderTransform>
-                                <RotateTransform Angle="0"/>
-                            </Ellipse.RenderTransform>
-                        </Ellipse>
-                        <TextBlock x:Name="LoadingText" 
-                                  Text="İşlem yapılıyor..." 
-                                  Foreground="{StaticResource TextSecondaryColor}"
-                                  HorizontalAlignment="Center"
-                                  Margin="0,10,0,0"/>
-                    </StackPanel>
-                </Grid>
             </StackPanel>
         </ScrollViewer>
 
@@ -212,5 +190,38 @@
                       TextWrapping="Wrap"
                       TextAlignment="Center"/>
         </Border>
+
+        <!-- Loading Indicator Overlay -->
+        <Grid x:Name="LoadingPanel" 
+              Grid.RowSpan="3" 
+              Visibility="Collapsed" 
+              Background="#80000000">
+            <Border Background="{StaticResource SecondaryColor}" 
+                    CornerRadius="10" 
+                    Padding="30"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center">
+                <StackPanel>
+                    <Ellipse x:Name="LoadingEllipse" 
+                            Width="60" 
+                            Height="60" 
+                            Stroke="{StaticResource AccentColor}" 
+                            StrokeThickness="5"
+                            StrokeDashArray="8,4"
+                            RenderTransformOrigin="0.5,0.5">
+                        <Ellipse.RenderTransform>
+                            <RotateTransform Angle="0"/>
+                        </Ellipse.RenderTransform>
+                    </Ellipse>
+                    <TextBlock x:Name="LoadingText" 
+                              Text="İşlem yapılıyor..." 
+                              Foreground="{StaticResource TextColor}"
+                              FontSize="14"
+                              FontWeight="Medium"
+                              HorizontalAlignment="Center"
+                              Margin="0,15,0,0"/>
+                </StackPanel>
+            </Border>
+        </Grid>
     </Grid>
 </Window>
