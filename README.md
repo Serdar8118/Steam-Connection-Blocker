@@ -158,7 +158,7 @@ Bu sayede:
 - **Tek Oyunculu RPG**: Skyrim, Fallout 4, Cyberpunk 2077
 - **Strateji**: Civilization, Total War (kampanya modu)
 - **Puzzle/Platform**: Portal, Hollow Knight, Celeste
-- **Sandbox (Offline)**: Minecraft (solo), Terraria (solo)
+- **Sandbox (Offline)**: Terraria (solo)
 - **Adventure**: Tomb Raider serisi, Uncharted benzeri oyunlar
 
 ### ❌ Çalışmayan Oyun Türleri
