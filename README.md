@@ -14,7 +14,7 @@ Windows 10/11 için Steam bağlantısını engelleyerek aile kütüphanesindeki 
 ## 📋 Gereksinimler
 
 - Windows 10 veya Windows 11
-- .NET 6.0 Runtime (veya SDK geliştirme için)
+- .NET 8.0 Runtime (veya SDK geliştirme için)
 - Yönetici (Administrator) izinleri
 - Steam yüklü olmalıdır
 
