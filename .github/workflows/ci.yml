@@ -1,0 +1,38 @@
+name: CI Build
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main, develop ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: windows-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+      
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v3
+      with:
+        dotnet-version: '8.0.x'
+        
+    - name: Restore dependencies
+      run: dotnet restore SteamConnectionBlocker.sln
+      
+    - name: Build Debug
+      run: dotnet build SteamConnectionBlocker.sln -c Debug --no-restore
+      
+    - name: Build Release
+      run: dotnet build SteamConnectionBlocker.sln -c Release --no-restore
+      
+    - name: Test Publish
+      run: |
+        dotnet publish SteamConnectionBlocker/SteamConnectionBlocker.csproj `
+          -c Release `
+          -r win-x64 `
+          --no-build `
+          -o ./test-publish
