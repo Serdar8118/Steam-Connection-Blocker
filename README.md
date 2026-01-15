@@ -2,19 +2,23 @@
 
 **Aile Kütüphanesi için Özel Çözüm**
 
-Steam aile kütüphanesinde paylaşılan **hikaye modlu (story)** ve **tek oyunculu (single-player)** oyunları aynı anda oynamanızı sağlayan kullanışlı masaüstü uygulaması.
+Steam aile kütüphanesindeki oyunlar aynı anda iki farklı hesap tarafından oynanamıyor. Bu sorunu çözmek için, **Steam'in internet bağlantısını engelleyerek** aile kütüphanesinde paylaşılan **hikaye modlu (story)** ve **tek oyunculu (single-player)** oyunları aynı anda oynamanızı sağlayan kullanışlı masaüstü uygulaması.
+
+> **Not**: Bu uygulama **sadece offline (çevrimdışı) oyunlarda geçerlidir**. Online (çevrimiçi) oyunlarda çalışmaz.
 
 ## 🎯 Amaç
 
-Bu uygulama, Steam'in aile kütüphanesi kısıtlamasını aşmak için tasarlanmıştır. Normalde bir hesap çevrimiçi oynarken, aile kütüphanesini paylaşan diğer hesaplar aynı oyun oynayamaz. Bu uygulama ile:
+Steam aile kütüphanesindeki oyunlar, normalde **aynı anda iki farklı hesap tarafından oynanamaz**. Bir hesap oyun oynarken, aile kütüphanesini paylaşan diğer hesaplar oyun oynayamaz.
+
+Bu sorunu çözmek için tasarlanan bu uygulama, **Steam'in internet bağlantısını engelleyerek** çevrimdışı moda geçirir. Bu sayede:
 
 - **Hikaye modlu oyunlar** (Story games)
 - **Tek oyunculu oyunlar** (Single-player games)
 - **Çevrimdışı oynanabilen oyunlar**
 
-...aynı anda oynanabilir hale gelir.
+...aynı anda farklı hesaplar tarafından oynanabilir hale gelir.
 
-> ⚠️ **Önemli**: Bu uygulama sadece çevrimdışı oynanabilen oyunlar içindir. Çevrimiçi çok oyunculu oyunlar çalışmayacaktır.
+> ⚠️ **Önemli**: Bu uygulama **sadece çevrimdışı (offline) oynanabilen oyunlar içindir**. Çevrimiçi (online) çok oyunculu oyunlar ve internet bağlantısı gerektiren oyunlarda **çalışmaz**.
 
 ## 🎮 Özellikler
 
@@ -186,6 +190,14 @@ Bu uygulama, Steam'in aile kütüphanesi özelliğini kullanarak **tek oyunculu 
 - Kişisel kullanım amacıyla tasarlanmıştır
 
 **Uyarı**: Çevrimiçi/multiplayer oyunlarda kullanmayın. Steam Kullanım Şartlarını ihlal edebilir.
+
+## 📦 Kaynak Kod Hakkında
+
+Bu yazılım **kapalı kaynak (proprietary)** olarak dağıtılmaktadır. Kaynak kodu kullanıcılara sunulmamaktadır. Uygulama yalnızca derlenmiş EXE dosyası olarak sunulmaktadır.
+
+- Kaynak koduna erişim sağlanmaz
+- Değişiklik veya yeniden dağıtım yapılamaz
+- Sadece orijinal dağıtım kanallarından indirin
 
 ---
 
